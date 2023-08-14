@@ -5,36 +5,18 @@ import java.util.*;
 import java.io.*;
 public class MyClass {
     
-    private static final int SIZE=9;
+    private static final int SIZE=9;//sudoku board is always of 9 by 9 size
     
     public static void main(String args[]) {
         
         Scanner scn=new Scanner(System.in);
-        
-         int board[][]={
-             {7,0,2,0,5,0,6,0,0},
-             {0,0,0,0,0,3,0,0,0},
-             {1,0,0,0,0,9,5,0,0},
-             {8,0,0,0,0,0,0,9,0},
-             {0,4,3,0,0,0,7,5,0},
-             {0,9,0,0,0,0,0,0,8},
-             {0,0,9,7,0,0,0,0,5},
-             {0,0,0,2,0,0,0,0,0},
-             {0,0,7,0,4,0,2,0,3}
-         };
-             
-             
-             
-             
-             
-         
-         
-        //  for(int row=0;row<9;row++){
-        //      for(int col=0;col<9;col++){
-        //           board[row][col]=scn.nextInt();
-        //      }
-              
-        //  }
+
+      // Enter the intial sudoku numbers to solve 
+          for(int row=0;row<9;row++){
+              for(int col=0;col<9;col++){
+                   board[row][col]=scn.nextInt();
+             }
+         }
     
       if(isSolved(board))
         System.out.println("Solved Successfully!!");
@@ -45,7 +27,7 @@ public class MyClass {
      
     }
     
-    
+    //to print the finally solved sudoku
     private static void printsudoku(int [][]board){
         
         for(int i=0;i<SIZE;i++)
@@ -66,7 +48,8 @@ public class MyClass {
             
         }
     }
-    
+
+  // To check the validity of a number in a particular row
     private static boolean checkInrow(int [][]board,int number,int row){
         
         for(int i=0;i<SIZE;i++){
@@ -79,7 +62,7 @@ public class MyClass {
         
     }
     
-    
+    // To check the validity of a number in a particular column
     private static boolean checkIncol(int [][]board,int number,int col){
         
         for(int i=0;i<SIZE;i++){
@@ -92,7 +75,7 @@ public class MyClass {
         
     }
     
-    
+    //To check the validity of a number in a 3 by 3 box
     private  static boolean checkInbox(int [][]board,int number,int row,int col){
          
          int firstrow= row-row%3;
@@ -107,7 +90,7 @@ public class MyClass {
              return false;
     }
     
-    
+    // A function to check if a number is valid in all senses
     private static boolean isValid(int [][]board,int number,int row,int col){
         
         if(!checkInrow(board,number,row)&& !checkIncol(board,number,col) && !checkInbox(board,number,row,col))
@@ -116,7 +99,7 @@ public class MyClass {
         return false;    
     }
     
-    
+    // the function to to solve the sudoku board entirely
     private static boolean isSolved(int [][]board){
         
         for(int i=0;i<SIZE;i++){
